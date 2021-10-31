@@ -20,13 +20,13 @@ Verze 1.0
   * Funkce
     * Aplikace bude volat API, ze kterého bude zobrazovat data o počasí
     * Data by měla uživateli dát stručný přehled o tom, jaké je počasí v ním určené lokaci
-    * Data se budou skládat z atuálního počasí, hodinové předpovědi, denní předpovědi
+    * Data se budou skládat z aktuálního počasí, hodinové předpovědi, denní předpovědi
     * Uživatel bude mít možnost ukládat si lokace do seznamu k rychlému přístupu
   * Uživatelské skupiny
     * běžný uživatel (aplikace má pouze jeden způsob užívání)
   * Omezení návrhu a implementace   
     * Volání API pouze v případě potřeby obnovení dat
-    * V případě, že nezbyde čas bude zkrácená týdenní předpověď (pokud ano, bude k dispozici obsáhlá)
+    * V případě, že nezbude čas bude zkrácená týdenní předpověď (pokud ano, bude k dispozici obsáhlá)
 * Požadavky na rozhraní
   * Uživatelská rozhraní 
     * Xamarin Forms
@@ -79,7 +79,7 @@ Verze 1.0
     * zobrazí se mu data o počasí k dané lokaci
   * Detaily
     * Aplikace bude mít MainPage
-      * Navigace(hledání, seznam uložených, nastavení)
+      * Navigace (hledání, seznam uložených, nastavení)
       * Data o počasí
     * pozadí pomocí gradientu (v případě času navíc => měnící se na základě počasí)
     * Tmavě šedý text a šedo barevné ikony
