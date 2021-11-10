@@ -83,7 +83,7 @@ Verze 1.0
       * Data o počasí
     * pozadí pomocí gradientu (v případě času navíc => měnící se na základě počasí)
     * Tmavě šedý text a šedo barevné ikony
-    * Při prvním spuštění je lokace defaultně nastavena na London
+    * Při prvním spuštění aplikace lokalizuje telefon a nastaví lokaci, pakliže nemá přístup k poloze, je lokace defaultně nastavena na London
     * Vypsání pomocí labelů a obrázků vyhovující danému počasí
       * Label vlevo nahoře: Název lokace
       * Label pod názvem: Velkým písmem Aktuální teplota v uživatelem zvolených jednotkách
