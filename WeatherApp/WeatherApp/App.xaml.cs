@@ -9,8 +9,11 @@ namespace WeatherApp
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            Device.SetFlags(new[] { "Brush_Experimental" });
+            MainPage = new NavigationPage(new MainPage()) 
+            {
+                BarBackgroundColor = Color.FromHex("#E5E5E5")
+            };
         }
 
         protected override void OnStart()
