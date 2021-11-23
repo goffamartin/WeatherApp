@@ -45,8 +45,8 @@
                             <StackLayout>
                                 <Grid Grid.Row="0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="150"/>
-                                        <RowDefinition Height="90"/>
+                                        <RowDefinition Height="220"/>
+                                        <RowDefinition Height="auto"/>
                                         <RowDefinition Height="110"/>
                                         <RowDefinition Height="35"/>
                                         <RowDefinition Height="25"/>
@@ -67,7 +67,8 @@
                                     <Label x:Name="MinTemp" TextColor="#413C3C" Text="3°C" Grid.Row="4" Grid.Column="0" HorizontalOptions="End" FontSize="20" FontFamily="Gadugi" Margin="0,0,30,0" />
                                 </Grid>
                             </StackLayout>
-                            <Frame BackgroundColor="#E5E5E5" Opacity="0.7" CornerRadius="10" HeightRequest="109" Grid.Row="1">
+                            <Frame BackgroundColor="#A1E5E5E5" CornerRadius="10" HeightRequest="109" Grid.Row="1">
+                                <StackLayout Opacity="1.5">
                                 <Grid Grid.Row="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20"/>
@@ -100,6 +101,7 @@
                                     <Label x:Name="DewPoint" TextColor="#413C3C" Text="2°C" Grid.Row="3" Grid.Column="2" HorizontalOptions="Start" FontSize="16" FontAttributes="Bold" FontFamily="Gadugi"/>
 
                                 </Grid>
+                                </StackLayout>
                             </Frame>
                         </Grid>
                     </Frame>
