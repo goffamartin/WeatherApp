@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
 using System.Windows.Input;
-using Android.Locations;
 
 namespace WeatherApp
 {
