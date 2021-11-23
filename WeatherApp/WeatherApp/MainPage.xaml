@@ -22,7 +22,7 @@
         </BoxView>
         <StackLayout>
             <StackLayout>
-                <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="20" HasShadow="False">
+                <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="20" HasShadow="True">
                     <Grid HeightRequest="40">
                         <ImageButton x:Name="SearchButton" Source="search.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="Start" HeightRequest="40" Margin="20,0,0,0" Clicked="SearchButton_Clicked"/>
                         <ImageButton Source="bookmarked.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="Center" HeightRequest="40"/>
@@ -67,7 +67,7 @@
                                     <Label x:Name="MinTemp" TextColor="#413C3C" Text="3°C" Grid.Row="4" Grid.Column="0" HorizontalOptions="End" FontSize="20" FontFamily="Gadugi" Margin="0,0,30,0" />
                                 </Grid>
                             </StackLayout>
-                            <Frame BackgroundColor="#A1E5E5E5" CornerRadius="10" HeightRequest="109" Grid.Row="1">
+                            <Frame BackgroundColor="#A1E5E5E5" CornerRadius="10" HasShadow="True" HeightRequest="109" Grid.Row="1">
                                 <StackLayout Opacity="1.5">
                                 <Grid Grid.Row="1">
                                     <Grid.RowDefinitions>
