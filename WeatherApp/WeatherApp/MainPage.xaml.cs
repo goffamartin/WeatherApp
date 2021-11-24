@@ -38,13 +38,13 @@ namespace WeatherApp
         public static bool currentLocation;
         public static string latitude;
         public static string longitude;
-        public static string placeName;
+        public static string placeName1;
 
         private Units UnitsChoice = Units.metric;
         private Lang LangChoice = Lang.en;
 
         private string APIKey = "f4cdb9a4d3badec1ff1423c4a5fba527";
-        private async void GetCurrentWeather()
+        public async void GetCurrentWeather()
         {
             string url = $"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=minutely&units={UnitsChoice}&appid={APIKey}&lang={LangChoice}";
 
@@ -54,7 +54,7 @@ namespace WeatherApp
             {
                 var info = JsonConvert.DeserializeObject<Rootobject>(data.Response);
 
-                LocationName.Text = placeName;
+                LocationName.Text = placeName1;
                 Description.Text = (info.current.weather[0].description[0].ToString().ToUpper() + info.current.weather[0].description.Substring(1));
                 ActualTemp.Text = $"{info.current.temp.ToString("0")}°C";
                 WeatherIcon.Source = $"i{info.current.weather[0].icon}.png";
@@ -69,7 +69,7 @@ namespace WeatherApp
             }
         }
 
-        async void GetCurrentLocation()
+        public async void GetCurrentLocation()
         {
             currentLocation = true;
             try
@@ -91,7 +91,10 @@ namespace WeatherApp
                     var placemarks = await Geocoding.GetPlacemarksAsync(location.Latitude, location.Longitude);
                     var placemark = placemarks?.FirstOrDefault();
                     if (placemark != null)
-                        placeName = placemark.SubAdminArea;
+                    {
+                        placeName1 = placemark.SubLocality; 
+                    }
+                        
                 }
                 else
                 {
@@ -122,7 +125,7 @@ namespace WeatherApp
 
         private void SearchButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SearchPage());
+            Navigation.PushAsync(new SearchPage(this));
         }
 
         private async void AnimateBackGround()

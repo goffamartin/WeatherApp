@@ -45,7 +45,8 @@
                             <StackLayout>
                                 <Grid Grid.Row="0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="220"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="140"/>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="110"/>
                                         <RowDefinition Height="35"/>
@@ -57,14 +58,14 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LocationName" TextColor="#413C3C" Text="Praha" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" FontSize="50" FontAttributes="Bold" FontFamily="Gadugi"/>
-                                    <Label x:Name="Description" TextColor="#413C3C" Text="Sunny" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" FontSize="40" FontFamily="Gadugi" MaxLines="2" HorizontalTextAlignment="Start"/>
-                                    <Label x:Name="ActualTemp" TextColor="#413C3C" Text="10°C" Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" FontSize="85" FontFamily="Gadugi"/>
-                                    <Label x:Name="FeelTemp" TextColor="#413C3C" Text="Feels like 9°C" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" FontSize="30" FontFamily="Gadugi"/>
-                                    <Image x:Name="WeatherIcon" Source="i01d.png" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Scale="1.4" Opacity="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                    <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="4" HorizontalOptions="Start" HeightRequest="25"/>
-                                    <Label x:Name="MaxTemp" TextColor="#413C3C" Text="13°C" Grid.Row="4" Grid.Column="0" HorizontalOptions="Start" FontSize="20" FontFamily="Gadugi" Padding="30,0,0,0"/>
-                                    <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="4" HorizontalOptions="End" HeightRequest="25" Rotation="180"/>
-                                    <Label x:Name="MinTemp" TextColor="#413C3C" Text="3°C" Grid.Row="4" Grid.Column="0" HorizontalOptions="End" FontSize="20" FontFamily="Gadugi" Margin="0,0,30,0" />
+                                    <Label x:Name="Description" TextColor="#413C3C" Text="Sunny" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" FontSize="40" FontFamily="Gadugi" MaxLines="2" HorizontalTextAlignment="Start"/>
+                                    <Label x:Name="ActualTemp" TextColor="#413C3C" Text="10°C" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" FontSize="85" FontFamily="Gadugi"/>
+                                    <Label x:Name="FeelTemp" TextColor="#413C3C" Text="Feels like 9°C" Grid.Row="4" Grid.Column="0" HorizontalOptions="Start" FontSize="30" FontFamily="Gadugi"/>
+                                    <Image x:Name="WeatherIcon" Source="i01d.png" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Scale="1.4" Opacity="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="5" HorizontalOptions="Start" HeightRequest="25"/>
+                                    <Label x:Name="MaxTemp" TextColor="#413C3C" Text="13°C" Grid.Row="5" Grid.Column="0" HorizontalOptions="Start" FontSize="20" FontFamily="Gadugi" Padding="30,0,0,0"/>
+                                    <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="5" HorizontalOptions="End" HeightRequest="25" Rotation="180"/>
+                                    <Label x:Name="MinTemp" TextColor="#413C3C" Text="3°C" Grid.Row="5" Grid.Column="0" HorizontalOptions="End" FontSize="20" FontFamily="Gadugi" Margin="0,0,30,0" />
                                 </Grid>
                             </StackLayout>
                             <Frame BackgroundColor="#A1E5E5E5" CornerRadius="10" HasShadow="True" HeightRequest="109" Grid.Row="1">
