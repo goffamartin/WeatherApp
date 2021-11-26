@@ -16,16 +16,19 @@
             </Frame>
         </StackLayout>
         <Button x:Name="FindMyLocation" Clicked="FindMyLocation_Clicked" TextColor="#413C3C" Text="Find my Location 🚩"  HorizontalOptions="Start" VerticalOptions="FillAndExpand" FontSize="20" Margin="20,0,30,0" FontFamily="Gadugi" BackgroundColor="#00000000"/>
-        <ListView x:Name="PlacesSearchListView" ItemsSource="{Binding PlacesList}" HasUnevenRows="True" Margin="30,10" >
+        <Label x:Name="InternetConnection" TextColor="#413C3C" Text="No internet Connection"  HorizontalOptions="Center" FontSize="20" FontFamily="Gadugi"  HorizontalTextAlignment="Center"/>
+            <ListView x:Name="PlacesSearchListView" ItemsSource="{Binding PlacesList}" HasUnevenRows="True" Margin="30,10" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell x:Name="viewCell" Tapped="viewCell_Tapped">
                         <StackLayout>
                             <Grid>
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
                                     <RowDefinition Height="*"/>
+                                    <RowDefinition Height="10"/>
                                 </Grid.RowDefinitions>
-                                <Label Text="{Binding Description}" TextColor="#413C3C" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" FontSize="20" FontFamily="Gadugi"/>
+                                <Label Text="{Binding Description}" TextColor="#413C3C" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="20" FontFamily="Gadugi"/>
                             </Grid>
                         </StackLayout>
                     </ViewCell>

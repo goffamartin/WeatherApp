@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 
 namespace WeatherApp
 {
@@ -21,6 +22,19 @@ namespace WeatherApp
         {
             InitializeComponent();
             mp = main;
+
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
+            {
+                InternetConnection.IsVisible = false;
+                FindMyLocation.IsEnabled = true;
+            }
+            else
+            {
+                FindMyLocation.IsEnabled = false;
+                InternetConnection.IsVisible = true;    
+            }
         }
         private MainPage mp;
         private async void PlaceSearch_Completed(object sender, EventArgs e)
@@ -28,16 +42,21 @@ namespace WeatherApp
             Entry searchtext = (Entry)sender;
             string url = $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={searchtext.Text}&key=AIzaSyAtS_ahApNcoB7BoJdDopnScf4CWySsp3I";
 
-            API_Response data = await API_Caller.Get(url);
-
-            if (data.Successuful)
+            var current = Connectivity.NetworkAccess;
+            if (current == NetworkAccess.Internet)
             {
-                //var info = JsonConvert.DeserializeObject<GooglePlace>(data.Response);
-                var info = JsonConvert.DeserializeObject<GooglePlaceAutoCompleteResult>(data.Response);
+                API_Response data = await API_Caller.Get(url);
 
-                PlacesList = new ObservableCollection<GooglePlaceAutoCompletePrediction>(info.AutoCompletePlaces);
-                PlacesSearchListView.ItemsSource = PlacesList;
+                if (data.Successuful)
+                {
+                    //var info = JsonConvert.DeserializeObject<GooglePlace>(data.Response);
+                    var info = JsonConvert.DeserializeObject<GooglePlaceAutoCompleteResult>(data.Response);
+
+                    PlacesList = new ObservableCollection<GooglePlaceAutoCompletePrediction>(info.AutoCompletePlaces);
+                    PlacesSearchListView.ItemsSource = PlacesList;
+                }
             }
+            
         }
 
         private async void viewCell_Tapped(object sender, EventArgs e)
@@ -70,7 +89,6 @@ namespace WeatherApp
         private void FindMyLocation_Clicked(object sender, EventArgs e)
         {
             mp.GetCurrentLocation();
-            mp.GetCurrentWeather();
             Navigation.PopAsync();
         }
     }
