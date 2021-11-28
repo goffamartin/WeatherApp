@@ -22,7 +22,10 @@ namespace WeatherApp
             latitude = (string)App.Current.Properties["Latitude"];
             placeName1 = (string)App.Current.Properties["Name"];
 
-            GetCurrentWeather();
+            if ((string)App.Current.Properties["FirstStart"] == "FirstStart")
+                GetCurrentLocation();
+            else
+                GetCurrentWeather();
 
             refreshView.Command = new Command(() =>
             {
@@ -30,12 +33,15 @@ namespace WeatherApp
 
                 if (current == NetworkAccess.Internet)
                 {
+                    InternetConnection.IsVisible = false;
                     if (currentLocation)
                         GetCurrentLocation();
-                    GetCurrentWeather();
+                    else
+                        GetCurrentWeather();
                 }
                 else
                 {
+                    InternetConnection.IsVisible = true;
                     SaveData();
                 }
                 
@@ -56,15 +62,14 @@ namespace WeatherApp
         private Units UnitsChoice = Units.metric;
         private Lang LangChoice = Lang.en;
 
-        private string APIKey = "f4cdb9a4d3badec1ff1423c4a5fba527";
         public async void GetCurrentWeather()
         {
-            string url = $"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=minutely&units={UnitsChoice}&appid={APIKey}&lang={LangChoice}";
+            string url = $"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=minutely&units={UnitsChoice}&appid={Constants.WeatherApiKey}&lang={LangChoice}";
             var current = Connectivity.NetworkAccess;
 
             if (current == NetworkAccess.Internet)
             {
-
+                InternetConnection.IsVisible = false;
                 API_Response data = await API_Caller.Get(url);
                 if (data.Successuful)
                 {
@@ -126,21 +131,25 @@ namespace WeatherApp
             {
                 // Handle not supported on device exception
                 await DisplayAlert("Error", fnsEx.Message, "OK");
+                currentLocation = false;
             }
             catch (FeatureNotEnabledException fneEx)
             {
                 // Handle not enabled on device exception
                 await DisplayAlert("Error", fneEx.Message, "OK");
+                currentLocation = false;
             }
             catch (PermissionException pEx)
             {
                 // Handle permission exception
                 await DisplayAlert("Error", pEx.Message, "OK");
+                currentLocation = false;
             }
             catch (Exception ex)
             {
                 // Unable to get location
                 await DisplayAlert("Error", ex.Message, "OK");
+                currentLocation = false;
             }
             GetCurrentWeather();
         }

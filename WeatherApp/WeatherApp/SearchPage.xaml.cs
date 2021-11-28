@@ -40,7 +40,7 @@ namespace WeatherApp
         private async void PlaceSearch_Completed(object sender, EventArgs e)
         {
             Entry searchtext = (Entry)sender;
-            string url = $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={searchtext.Text}&key=AIzaSyAtS_ahApNcoB7BoJdDopnScf4CWySsp3I";
+            string url = $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={searchtext.Text}&key={Constants.GoogleMapsKey}";
 
             var current = Connectivity.NetworkAccess;
             if (current == NetworkAccess.Internet)
@@ -49,7 +49,6 @@ namespace WeatherApp
 
                 if (data.Successuful)
                 {
-                    //var info = JsonConvert.DeserializeObject<GooglePlace>(data.Response);
                     var info = JsonConvert.DeserializeObject<GooglePlaceAutoCompleteResult>(data.Response);
 
                     PlacesList = new ObservableCollection<GooglePlaceAutoCompletePrediction>(info.AutoCompletePlaces);
@@ -64,7 +63,7 @@ namespace WeatherApp
             GooglePlace info = null;
             ViewCell vc = (ViewCell)sender;
             GooglePlaceAutoCompletePrediction SelectedPlace = (GooglePlaceAutoCompletePrediction)vc.BindingContext;
-            string url = $"https://maps.googleapis.com/maps/api/place/details/json?placeid={SelectedPlace.PlaceId}&key=AIzaSyAtS_ahApNcoB7BoJdDopnScf4CWySsp3I";
+            string url = $"https://maps.googleapis.com/maps/api/place/details/json?placeid={SelectedPlace.PlaceId}&key={Constants.GoogleMapsKey}";
 
             API_Response data = await API_Caller.Get(url);
 

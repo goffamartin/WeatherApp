@@ -10,13 +10,6 @@
                     <GradientStop Color="#6EFFE2" Offset="0.5"/>
                     <GradientStop Color="#EAFF6E" Offset="0.7"/>
                     <GradientStop Color="#FFC056" Offset="1.0"/>
-                    <!--GradientStop Color="#86A2F5" Offset="0.05"/>
-                    <GradientStop Color="#D8F2FF" Offset="0.30"/>
-                    <GradientStop Color="#FFFFFF" Offset="0.35"/>
-                    <GradientStop Color="#FFFFFF" Offset="0.40"/>
-                    <GradientStop Color="#FCF2DB" Offset="0.45"/>
-                    <GradientStop Color="#F8D074" Offset="0.65"/>
-                    <GradientStop Color="#F2A900" Offset="1.0"/-->
                 </LinearGradientBrush>
             </BoxView.Background>
         </BoxView>
@@ -43,6 +36,7 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <StackLayout>
+                                <Label x:Name="InternetConnection" TextColor="#413C3C" Text="No internet Connection" IsVisible="false" HorizontalOptions="Center" FontSize="20" FontFamily="Gadugi"  HorizontalTextAlignment="Center"/>
                                 <Grid Grid.Row="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
