@@ -118,7 +118,10 @@ namespace WeatherApp
                     var placemark = placemarks?.FirstOrDefault();
                     if (placemark != null)
                     {
-                        placeName1 = placemark.SubLocality; 
+                        if (placemark.SubLocality != null)
+                            placeName1 = placemark.SubLocality;
+                        else
+                            placeName1 = placemark.SubAdminArea;
                     }
                         
                 }
