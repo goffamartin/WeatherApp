@@ -18,8 +18,8 @@
                 <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="20" HasShadow="True">
                     <Grid HeightRequest="40">
                         <ImageButton x:Name="SearchButton" Source="search.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="Start" HeightRequest="40" Margin="20,0,0,0" Clicked="SearchButton_Clicked"/>
-                        <ImageButton Source="bookmarked.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="Center" HeightRequest="40"/>
-                        <ImageButton Source="settings.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="End" HeightRequest="40" Margin="0,0,20,0"/>
+                        <ImageButton x:Name="BookmarkedButton" Source="bookmarked.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="Center" HeightRequest="40"/>
+                        <ImageButton x:Name="SettingsButton" Source="settings.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="End" HeightRequest="40" Margin="0,0,20,0"/>
                     </Grid>
                 </Frame>
             </StackLayout>
@@ -36,7 +36,7 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <StackLayout>
-                                <Label x:Name="InternetConnection" TextColor="#413C3C" Text="No internet Connection" IsVisible="false" HorizontalOptions="Center" FontSize="20" FontFamily="Gadugi"  HorizontalTextAlignment="Center"/>
+                                <Label x:Name="InternetConnection" Style="{StaticResource DefaultGray}" Text="No internet Connection" IsVisible="false" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                 <Grid Grid.Row="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
@@ -51,15 +51,19 @@
                                         <ColumnDefinition Width="195"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label x:Name="LocationName" TextColor="#413C3C" Text="Praha" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" FontSize="50" FontAttributes="Bold" FontFamily="Gadugi"/>
-                                    <Label x:Name="Description" TextColor="#413C3C" Text="Sunny" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start" FontSize="40" FontFamily="Gadugi" MaxLines="2" HorizontalTextAlignment="Start"/>
-                                    <Label x:Name="ActualTemp" TextColor="#413C3C" Text="10°C" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" FontSize="85" FontFamily="Gadugi"/>
-                                    <Label x:Name="FeelTemp" TextColor="#413C3C" Text="Feels like 9°C" Grid.Row="4" Grid.Column="0" HorizontalOptions="Start" FontSize="30" FontFamily="Gadugi"/>
-                                    <Image x:Name="WeatherIcon" Source="i01d.png" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Scale="1.4" Opacity="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label x:Name="LocationName" Style="{StaticResource DefaultGray16Bold}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="50"/>
+                                    
+                                    <Label x:Name="Description" Style="{StaticResource DefaultGray}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="40" MaxLines="2" HorizontalTextAlignment="Start"/>
+                                    
+                                    <Label x:Name="ActualTemp" Style="{StaticResource DefaultGray}" Grid.Row="3" Grid.Column="0" FontSize="85"/>
+                                    <Label x:Name="FeelTemp" Style="{StaticResource DefaultGray}" Grid.Row="4" Grid.Column="0" FontSize="30"/>
+                                    
+                                    <Image x:Name="WeatherIcon" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Scale="1.4" Opacity="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    
                                     <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="5" HorizontalOptions="Start" HeightRequest="25"/>
-                                    <Label x:Name="MaxTemp" TextColor="#413C3C" Text="13°C" Grid.Row="5" Grid.Column="0" HorizontalOptions="Start" FontSize="20" FontFamily="Gadugi" Padding="30,0,0,0"/>
+                                    <Label x:Name="MaxTemp"  Style="{StaticResource DefaultGray}" Grid.Row="5" Grid.Column="0" Padding="30,0,0,0"/>
                                     <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="5" HorizontalOptions="End" HeightRequest="25" Rotation="180"/>
-                                    <Label x:Name="MinTemp" TextColor="#413C3C" Text="3°C" Grid.Row="5" Grid.Column="0" HorizontalOptions="End" FontSize="20" FontFamily="Gadugi" Margin="0,0,30,0" />
+                                    <Label x:Name="MinTemp" Style="{StaticResource DefaultGray}" Grid.Row="5" Grid.Column="0" HorizontalOptions="End" Margin="0,0,30,0" />
                                 </Grid>
                             </StackLayout>
                             <Frame BackgroundColor="#A1E5E5E5" CornerRadius="10" HasShadow="True" HeightRequest="109" Grid.Row="1">
@@ -77,23 +81,23 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label TextColor="#413C3C" Text="Wind:" Grid.Row="0" Grid.Column="0" FontSize="15" FontFamily="Gadugi"/>
-                                    <Label x:Name="Wind" TextColor="#413C3C" Text="3.7 km/h NW" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" FontSize="16" FontAttributes="Bold" FontFamily="Gadugi"/>
+                                        <Label Style="{StaticResource DefaultGray15}" Text="Wind:" Grid.Row="0" Grid.Column="0"/>
+                                        <Label x:Name="Wind" Style="{StaticResource DefaultGray16Bold}" Grid.Row="1" Grid.Column="0"/>
 
-                                    <Label TextColor="#413C3C" Text="UV index:" Grid.Row="2" Grid.Column="0" FontSize="15" FontFamily="Gadugi"/>
-                                    <Label x:Name="UVindex" TextColor="#413C3C" Text="0.5" Grid.Row="3" Grid.Column="0" HorizontalOptions="Start" FontSize="16" FontAttributes="Bold" FontFamily="Gadugi"/>
+                                        <Label Style="{StaticResource DefaultGray15}" Text="UV index:" Grid.Row="2" Grid.Column="0"/>
+                                        <Label x:Name="UVindex" Style="{StaticResource DefaultGray16Bold}" Grid.Row="3" Grid.Column="0"/>
 
-                                    <Label TextColor="#413C3C" Text="Pressure:" Grid.Row="0" Grid.Column="1" FontSize="15" FontFamily="Gadugi"/>
-                                    <Label x:Name="Pressure" TextColor="#413C3C" Text="1018hPa" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" FontSize="16" FontAttributes="Bold" FontFamily="Gadugi"/>
+                                        <Label Style="{StaticResource DefaultGray15}" Text="Pressure:" Grid.Row="0" Grid.Column="1"/>
+                                        <Label x:Name="Pressure" Style="{StaticResource DefaultGray16Bold}" Grid.Row="1" Grid.Column="1"/>
 
-                                    <Label TextColor="#413C3C" Text="Visibility:" Grid.Row="2" Grid.Column="1" FontSize="15" FontFamily="Gadugi"/>
-                                    <Label x:Name="Visibility" TextColor="#413C3C" Text="0,4km" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start" FontSize="16" FontAttributes="Bold" FontFamily="Gadugi"/>
+                                        <Label  Style="{StaticResource DefaultGray15}" Text="Visibility:" Grid.Row="2" Grid.Column="1"/>
+                                        <Label x:Name="Visibility" Style="{StaticResource DefaultGray16Bold}" Grid.Row="3" Grid.Column="1"/>
 
-                                    <Label TextColor="#413C3C" Text="Humidity:" Grid.Row="0" Grid.Column="2" FontSize="15" FontFamily="Gadugi"/>
-                                    <Label x:Name="Humidity" TextColor="#413C3C" Text="89%" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" FontSize="16" FontAttributes="Bold" FontFamily="Gadugi"/>
+                                        <Label  Style="{StaticResource DefaultGray15}" Text="Humidity:" Grid.Row="0" Grid.Column="2"/>
+                                        <Label x:Name="Humidity" Style="{StaticResource DefaultGray16Bold}" Grid.Row="1" Grid.Column="2"/>
 
-                                    <Label TextColor="#413C3C" Text="Dew point:" Grid.Row="2" Grid.Column="2" FontSize="15" FontFamily="Gadugi"/>
-                                    <Label x:Name="DewPoint" TextColor="#413C3C" Text="2°C" Grid.Row="3" Grid.Column="2" HorizontalOptions="Start" FontSize="16" FontAttributes="Bold" FontFamily="Gadugi"/>
+                                        <Label  Style="{StaticResource DefaultGray15}" Text="Dew point:" Grid.Row="2" Grid.Column="2"/>
+                                        <Label x:Name="DewPoint" Style="{StaticResource DefaultGray16Bold}" Grid.Row="3" Grid.Column="2"/>
 
                                 </Grid>
                                 </StackLayout>

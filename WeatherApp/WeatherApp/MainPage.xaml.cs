@@ -90,13 +90,16 @@ namespace WeatherApp
             Pressure.Text = $"{info.current.pressure} hpa";
             Visibility.Text = $"{info.current.visibility / 1000} km";
             UVindex.Text = $"{info.current.uvi}%";
+            DewPoint.Text = $"{info.current.dew_point}°C";
             FeelTemp.Text = $"Feels like {info.current.feels_like.ToString("0")}°C";
             MaxTemp.Text = $"{info.daily[0].temp.max.ToString("0")}°C";
             MinTemp.Text = $"{info.daily[0].temp.min.ToString("0")}°C";
-         }
+            refreshView.IsRefreshing = false;
+        }
 
         public async void GetCurrentLocation()
         {
+            refreshView.IsRefreshing = true;
             currentLocation = true;
             try
             {
@@ -108,7 +111,7 @@ namespace WeatherApp
                     {
                         DesiredAccuracy = GeolocationAccuracy.Medium,
                         Timeout = TimeSpan.FromSeconds(30)
-                    });   
+                    });
                 }
                 if (location != null)
                 {

@@ -8,15 +8,15 @@
             <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="53" HasShadow="True" Padding="20,7">
                 <Grid>
                     <Frame BackgroundColor="#FFFFFF" Padding="15,0" CornerRadius="25" Margin="0,0,70,0">
-                        <Entry x:Name="PlaceSearch" TextColor="#413C3C" FontSize="20" Completed="PlaceSearch_Completed" HeightRequest="20" BackgroundColor="#FFFFFF" FontFamily="Gadugi" MaxLength="30" Placeholder="Search"/>
+                        <Entry x:Name="PlaceSearch" TextColor="#413C3C" FontSize="19" Completed="PlaceSearch_Completed" HeightRequest="20" BackgroundColor="#FFFFFF" FontFamily="Gadugi" MaxLength="30" Placeholder="Search"/>
                     </Frame>
                     
-                    <ImageButton x:Name="CloseSearch" Source="close.png" Clicked="CloseSearch_Clicked" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.3" HorizontalOptions="End" HeightRequest="20" Margin="0,0,20,0" InputTransparent="False"/>
+                    <ImageButton x:Name="CloseSearch" Source="close.png" Clicked="CloseSearch_Clicked" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.3" HorizontalOptions="End" HeightRequest="20" Margin="0,0,20,0"/>
                 </Grid>
             </Frame>
         </StackLayout>
         <Button x:Name="FindMyLocation" Clicked="FindMyLocation_Clicked" TextColor="#413C3C" Text="Find my Location 🚩"  HorizontalOptions="Start" VerticalOptions="FillAndExpand" FontSize="20" Margin="20,0,30,0" FontFamily="Gadugi" BackgroundColor="#00000000"/>
-        <Label x:Name="InternetConnection" TextColor="#413C3C" Text="No internet Connection"  HorizontalOptions="Center" FontSize="20" FontFamily="Gadugi"  HorizontalTextAlignment="Center"/>
+        <Label x:Name="InternetConnection" Style="{StaticResource DefaultGray}" Text="No internet Connection"  HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
             <ListView x:Name="PlacesSearchListView" ItemsSource="{Binding PlacesList}" HasUnevenRows="True" Margin="30,10" >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -28,7 +28,7 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="10"/>
                                 </Grid.RowDefinitions>
-                                <Label Text="{Binding Description}" TextColor="#413C3C" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Center" FontSize="20" FontFamily="Gadugi"/>
+                                <Label Text="{Binding Description}" Style="{StaticResource DefaultGray}" Grid.Row="1" VerticalOptions="Center"/>
                             </Grid>
                         </StackLayout>
                     </ViewCell>
