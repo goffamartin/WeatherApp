@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace WeatherApp
 {
@@ -39,13 +40,47 @@ namespace WeatherApp
         public int id { get; set; }
         public string main { get; set; }
         public string description { get; set; }
-        public string icon { get; set; }
+        private string _icon;
+        public string icon 
+        {
+            get
+            {
+                return $"i{_icon}.png";
+            } 
+            set { _icon = value; }
+        }
     }
 
     public class Hourly
     {
-        public int dt { get; set; }
-        public float temp { get; set; }
+        private int _dt;
+        public int dt
+        {
+            get { return _dt; }
+            set 
+            {
+                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                dateTime = dateTime.AddSeconds(value).ToLocalTime();
+                time = $"{dateTime.ToString("HH:mm")}";
+                _dt = value;
+            }
+        }
+
+        public string time { get; set; }
+        public string temperature { get; set; }
+        private float _temp;
+        public float temp
+        {
+            get
+            {
+                return _temp;
+            }
+            set 
+            { 
+               temperature = $"{value.ToString("0")}°C";
+               _temp = value;
+            }
+        }
         public float feels_like { get; set; }
         public int pressure { get; set; }
         public int humidity { get; set; }
@@ -62,7 +97,23 @@ namespace WeatherApp
 
     public class Daily
     {
-        public int dt { get; set; }
+        private int _dt;
+        public int dt
+        {
+            get { return _dt; }
+            set
+            {
+                DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                dateTime = dateTime.AddSeconds(value).ToLocalTime();
+                date = $"{dateTime.ToString("ddd MMM dd")}";
+                _dt = value;
+            }
+        }
+        public string temperature 
+        {
+            get { return $"{temp.day.ToString("0")}/{temp.night.ToString("0")}°C"; }
+        }
+        public string date { get; set; }
         public int sunrise { get; set; }
         public int sunset { get; set; }
         public int moonrise { get; set; }

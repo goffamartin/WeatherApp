@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace WeatherApp
 {
@@ -62,6 +63,9 @@ namespace WeatherApp
         private Units UnitsChoice = Units.metric;
         private Lang LangChoice = Lang.en;
 
+        private static ObservableCollection<Hourly> HourlyForecastList { get; set; }
+        private static ObservableCollection<Daily> DailyForecastList { get; set; }
+
         public async void GetCurrentWeather()
         {
             string url = $"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=minutely&units={UnitsChoice}&appid={Constants.WeatherApiKey}&lang={LangChoice}";
@@ -81,10 +85,11 @@ namespace WeatherApp
                 info = JsonConvert.DeserializeObject<Rootobject>(infostring);
                 placeName1 = (string)App.Current.Properties["Name"];
             }
+            //Current Weather
             LocationName.Text = placeName1;
             Description.Text = (info.current.weather[0].description[0].ToString().ToUpper() + info.current.weather[0].description.Substring(1));
             ActualTemp.Text = $"{info.current.temp.ToString("0")}°C";
-            WeatherIcon.Source = $"i{info.current.weather[0].icon}.png";
+            WeatherIcon.Source = info.current.weather[0].icon;
             Wind.Text = $"{info.current.wind_speed} m/s";
             Humidity.Text = $"{info.current.humidity}%";
             Pressure.Text = $"{info.current.pressure} hpa";
@@ -94,6 +99,13 @@ namespace WeatherApp
             FeelTemp.Text = $"Feels like {info.current.feels_like.ToString("0")}°C";
             MaxTemp.Text = $"{info.daily[0].temp.max.ToString("0")}°C";
             MinTemp.Text = $"{info.daily[0].temp.min.ToString("0")}°C";
+            //Hourly Forecast
+            HourlyForecastList = new ObservableCollection<Hourly>(info.hourly);
+            HourlyForecastView.ItemsSource = HourlyForecastList;
+            //Daily Forecast
+            DailyForecastList = new ObservableCollection<Daily>(info.daily);
+            DailyForecastView.ItemsSource = DailyForecastList;
+
             refreshView.IsRefreshing = false;
         }
 

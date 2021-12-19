@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.MainPage" NavigationPage.HasNavigationBar="False">
     <Grid>
@@ -14,17 +15,14 @@
             </BoxView.Background>
         </BoxView>
         <StackLayout>
-            <StackLayout>
-                <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="20" HasShadow="True">
-                    <Grid HeightRequest="40">
-                        <ImageButton x:Name="SearchButton" Source="search.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="Start" HeightRequest="40" Margin="20,0,0,0" Clicked="SearchButton_Clicked"/>
-                        <ImageButton x:Name="BookmarkedButton" Source="bookmarked.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="Center" HeightRequest="40"/>
-                        <ImageButton x:Name="SettingsButton" Source="settings.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2.2" HorizontalOptions="End" HeightRequest="40" Margin="0,0,20,0"/>
+            <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="80" HasShadow="True" Padding="20,7">
+                    <Grid>
+                        <ImageButton x:Name="SearchButton" Source="search.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="Start" HeightRequest="20" Margin="20,9,0,9" Clicked="SearchButton_Clicked"/>
+                        <ImageButton x:Name="BookmarkedButton" Source="bookmarked.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="Center" HeightRequest="20" Margin="0,9,0,9"/>
+                        <ImageButton x:Name="SettingsButton" Source="settings.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="End" HeightRequest="20" Margin="0,9,20,9"/>
                     </Grid>
                 </Frame>
-            </StackLayout>
-
-            <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing}"
+                <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}">
 
                 <ScrollView>
@@ -32,6 +30,9 @@
                     <Frame BackgroundColor="Transparent">
                         <Grid>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
@@ -61,7 +62,7 @@
                                     <Image x:Name="WeatherIcon" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Scale="1.4" Opacity="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
                                     
                                     <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="5" HorizontalOptions="Start" HeightRequest="25"/>
-                                    <Label x:Name="MaxTemp"  Style="{StaticResource DefaultGray}" Grid.Row="5" Grid.Column="0" Padding="30,0,0,0"/>
+                                    <Label x:Name="MaxTemp" Style="{StaticResource DefaultGray}" Grid.Row="5" Grid.Column="0" Padding="30,0,0,0"/>
                                     <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="5" HorizontalOptions="End" HeightRequest="25" Rotation="180"/>
                                     <Label x:Name="MinTemp" Style="{StaticResource DefaultGray}" Grid.Row="5" Grid.Column="0" HorizontalOptions="End" Margin="0,0,30,0" />
                                 </Grid>
@@ -100,6 +101,62 @@
                                         <Label x:Name="DewPoint" Style="{StaticResource DefaultGray16Bold}" Grid.Row="3" Grid.Column="2"/>
 
                                 </Grid>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="#A1E5E5E5" CornerRadius="10" HasShadow="True" HeightRequest="109" Grid.Row="2" Padding="15,10,15,20">
+                                <StackLayout>
+                                    <Label Style="{StaticResource DefaultGray15}" Text="Hourly forecast" FontSize="16"/>
+
+                                    <CollectionView x:Name="HourlyForecastView" ItemsSource="{Binding HourlyForecastList}" ItemsLayout="HorizontalList">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout>
+                                                <Grid WidthRequest="52" HeightRequest="100">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Style="{StaticResource DefaultGray15}" Text="{Binding time}" Grid.Row="0" HorizontalOptions="Center"/>
+                                                    <Image Source="{Binding Path=weather[0].icon}" Grid.Row="1" Opacity="0.8" Scale="2.5"/>
+                                                    <Label Style="{StaticResource DefaultGray}" Text="{Binding temperature}" Grid.Row="2" HorizontalOptions="Center"/>
+                                                </Grid>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </Frame>
+                            <Frame BackgroundColor="#A1E5E5E5" CornerRadius="10" HasShadow="True" HeightRequest="503" Grid.Row="3" Padding="15,10,15,10">
+                                <StackLayout>
+                                    <CollectionView x:Name="DailyForecastView" ItemsSource="{Binding DailyForecastList}">
+                                        <CollectionView.Header>
+                                            <Label Style="{StaticResource DefaultGray15}" Text="Daily forecast" FontSize="16"/>
+                                        </CollectionView.Header>
+                                        <CollectionView.ItemsLayout>
+                                            <LinearItemsLayout Orientation="Vertical"/>
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid HeightRequest="60">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="100"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="100"/>
+                                                        <ColumnDefinition Width="50"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"/>
+                                                        <RowDefinition Height="10"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Style="{StaticResource DefaultGray15}" Text="{Binding date}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                    <Label Style="{StaticResource DefaultGray15}" Text="{Binding temperature}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"/>
+                                                    <Image Source="{Binding Path=weather[0].icon}" Grid.Column="3" Opacity="0.8" Scale="1.2" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                    <Line Stroke="#413C3C" X1="0" Y1="0" X2="800" Y2="0" Grid.Row="1" Grid.ColumnSpan="4"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
                                 </StackLayout>
                             </Frame>
                         </Grid>
