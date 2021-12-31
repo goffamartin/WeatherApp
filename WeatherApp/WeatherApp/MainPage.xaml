@@ -4,16 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.MainPage" NavigationPage.HasNavigationBar="False">
     <Grid>
-        <BoxView x:Name="bdGradient" Scale="4" AnchorX="1" AnchorY="0">
-            <BoxView.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="#6EC9FF" Offset="0.3"/>
-                    <GradientStop Color="#6EFFE2" Offset="0.5"/>
-                    <GradientStop Color="#EAFF6E" Offset="0.7"/>
-                    <GradientStop Color="#FFC056" Offset="1.0"/>
-                </LinearGradientBrush>
-            </BoxView.Background>
-        </BoxView>
+        <BoxView x:Name="bdGradient" Scale="4" AnchorX="1" AnchorY="0"/>
         <StackLayout>
             <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="80" HasShadow="True" Padding="20,7">
                     <Grid>
@@ -61,9 +52,9 @@
                                     
                                     <Image x:Name="WeatherIcon" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Scale="1.4" Opacity="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
                                     
-                                    <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="5" HorizontalOptions="Start" HeightRequest="25"/>
+                                    <Image Source="arrow_icon.png" Opacity="0.6" Grid.Row="5" HorizontalOptions="Start" HeightRequest="25"/>
                                     <Label x:Name="MaxTemp" Style="{StaticResource DefaultGray}" Grid.Row="5" Grid.Column="0" Padding="30,0,0,0"/>
-                                    <Image Source="arrow_icon.png" Opacity="0.7" Grid.Row="5" HorizontalOptions="End" HeightRequest="25" Rotation="180"/>
+                                    <Image Source="arrow_icon.png" Opacity="0.6" Grid.Row="5" HorizontalOptions="End" HeightRequest="25" Rotation="180"/>
                                     <Label x:Name="MinTemp" Style="{StaticResource DefaultGray}" Grid.Row="5" Grid.Column="0" HorizontalOptions="End" Margin="0,0,30,0" />
                                 </Grid>
                             </StackLayout>

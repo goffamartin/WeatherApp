@@ -85,6 +85,24 @@ namespace WeatherApp
                 info = JsonConvert.DeserializeObject<Rootobject>(infostring);
                 placeName1 = (string)App.Current.Properties["Name"];
             }
+            if (info.current.weather[0].icon.Contains("d."))
+            {
+                if (info.current.weather[0].icon.Contains("01d") || info.current.weather[0].icon.Contains("02d") || info.current.weather[0].icon.Contains("03d"))
+                    bdGradient.Background = new LinearGradientBrush(dayGoodWeatherGradientStops, new Point(0, 1), new Point(1, 0));
+                else if (info.current.weather[0].icon.Contains("13d") || info.current.weather[0].icon.Contains("50d"))
+                    bdGradient.Background = new LinearGradientBrush(dayColdWeatherGradientStops, new Point(0, 1), new Point(1, 0));
+                else
+                    bdGradient.Background = new LinearGradientBrush(dayBadWeatherGradientStops, new Point(0, 1), new Point(1, 0));
+            }
+            if (info.current.weather[0].icon.Contains("n."))
+            {
+                if (info.current.weather[0].icon.Contains("01n") || info.current.weather[0].icon.Contains("02n") || info.current.weather[0].icon.Contains("03n"))
+                    bdGradient.Background = new LinearGradientBrush(nightGoodWeatherGradientStops, new Point(0, 1), new Point(1, 0));
+                else if (info.current.weather[0].icon.Contains("13n") || info.current.weather[0].icon.Contains("50n"))
+                    bdGradient.Background = new LinearGradientBrush(nightColdWeatherGradientStops, new Point(0, 1), new Point(1, 0));
+                else
+                    bdGradient.Background = new LinearGradientBrush(nightBadWeatherGradientStops, new Point(0, 1), new Point(1, 0));
+            }
             //Current Weather
             LocationName.Text = placeName1;
             Description.Text = (info.current.weather[0].description[0].ToString().ToUpper() + info.current.weather[0].description.Substring(1));
@@ -185,6 +203,15 @@ namespace WeatherApp
         {
             Navigation.PushAsync(new SearchPage(this));
         }
+
+        //DayGradientsCollection
+        GradientStopCollection dayGoodWeatherGradientStops = new GradientStopCollection() { new GradientStop(Color.FromHex("#fcbc4c"), 0.0f), new GradientStop(Color.FromHex("#f1df85"), 0.5f), new GradientStop(Color.FromHex("#c4ed67"), 1f) };
+        GradientStopCollection dayColdWeatherGradientStops = new GradientStopCollection() { new GradientStop(Color.FromHex("#acb6d1"), 0.0f), new GradientStop(Color.FromHex("#91a1af"), 0.5f), new GradientStop(Color.FromHex("#5d7d9a"), 1f) };
+        GradientStopCollection dayBadWeatherGradientStops = new GradientStopCollection() { new GradientStop(Color.FromHex("#4ca5fc"), 0.0f), new GradientStop(Color.FromHex("#85f1d3"), 0.5f), new GradientStop(Color.FromHex("#67c8ed"), 1f) };
+        //NightGradientCollection
+        GradientStopCollection nightGoodWeatherGradientStops = new GradientStopCollection() { new GradientStop(Color.FromHex("#5470dd"),0.0f), new GradientStop(Color.FromHex("#4598da"),0.5f), new GradientStop(Color.FromHex("#00d4ff"), 1f) };
+        GradientStopCollection nightColdWeatherGradientStops = new GradientStopCollection() { new GradientStop(Color.FromHex("#c3c4e2"), 0.0f), new GradientStop(Color.FromHex("#a9b4d6"), 0.5f), new GradientStop(Color.FromHex("#5d7d9a"), 1f) };
+        GradientStopCollection nightBadWeatherGradientStops = new GradientStopCollection() { new GradientStop(Color.FromHex("#416ecd"), 0.0f), new GradientStop(Color.FromHex("#6cabb6"), 0.5f), new GradientStop(Color.FromHex("#306bbb"), 1f) };
 
         private async void AnimateBackGround()
         {
