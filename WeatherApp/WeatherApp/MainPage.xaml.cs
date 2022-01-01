@@ -22,7 +22,10 @@ namespace WeatherApp
             longitude = (string)App.Current.Properties["Longitude"];
             latitude = (string)App.Current.Properties["Latitude"];
             placeName1 = (string)App.Current.Properties["Name"];
-
+            if ((string)App.Current.Properties["Bookmarked"] != "")
+            {
+                BookmarkedPage.LocationList = new ObservableCollection<Location>(JsonConvert.DeserializeObject<List<Location>>((string)App.Current.Properties["Bookmarked"]));
+            }
             if ((string)App.Current.Properties["FirstStart"] == "FirstStart")
                 GetCurrentLocation();
             else
@@ -196,13 +199,11 @@ namespace WeatherApp
             App.Current.Properties["Data"] = JsonConvert.SerializeObject(info);
             App.Current.Properties["Latitude"] = latitude;
             App.Current.Properties["Longitude"] = longitude;
+            App.Current.Properties["Bookmarked"] = JsonConvert.SerializeObject(BookmarkedPage.LocationList);
         }
 
 
-        private void SearchButton_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new SearchPage(this));
-        }
+
 
         //DayGradientsCollection
         GradientStopCollection dayGoodWeatherGradientStops = new GradientStopCollection() { new GradientStop(Color.FromHex("#fcbc4c"), 0.0f), new GradientStop(Color.FromHex("#f1df85"), 0.5f), new GradientStop(Color.FromHex("#c4ed67"), 1f) };
@@ -225,6 +226,15 @@ namespace WeatherApp
                 bdGradient.Animate(name: "backward", callback: backward, start: 1, end: 0, length: 5000, easing: Easing.SinIn);
                 await Task.Delay(5000);
             }
+        }
+
+        private void SearchButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SearchPage(this));
+        }
+        private void BookmarkedButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new BookmarkedPage(this));
         }
     }
 }

@@ -18,10 +18,15 @@ namespace WeatherApp
     public partial class SearchPage : ContentPage
     {
         public static ObservableCollection<GooglePlaceAutoCompletePrediction> PlacesList { get; set; }
-        public SearchPage(MainPage main)
+        public SearchPage(MainPage main, bool addLocation = false)
         {
             InitializeComponent();
             mp = main;
+            AddLocation = addLocation;
+            if (addLocation)
+                FindMyLocation.IsVisible = false;
+            else
+                FindMyLocation.IsVisible = true;
 
             var current = Connectivity.NetworkAccess;
 
@@ -37,6 +42,7 @@ namespace WeatherApp
             }
         }
         private MainPage mp;
+        private bool AddLocation;
         private async void PlaceSearch_Completed(object sender, EventArgs e)
         {
             Entry searchtext = (Entry)sender;
@@ -70,13 +76,28 @@ namespace WeatherApp
             if (data.Successuful)
             {
                 info = new GooglePlace(JObject.Parse(data.Response));
-
-                MainPage.longitude = info.Longitude.ToString();
-                MainPage.latitude = info.Latitude.ToString();
-                MainPage.placeName1 = info.Name1;
-                MainPage.currentLocation = false;
-                mp.GetCurrentWeather();
-                await Navigation.PopAsync();
+                if (!AddLocation)
+                {
+                    MainPage.longitude = info.Longitude.ToString();
+                    MainPage.latitude = info.Latitude.ToString();
+                    MainPage.placeName1 = info.Name1;
+                    MainPage.currentLocation = false;
+                    mp.GetCurrentWeather();
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    Location location = new Location() { latitude = info.Latitude.ToString(),longitude = info.Longitude.ToString(), name = info.Name1 };
+                    if (!BookmarkedPage.LocationList.Any(n=> n.name == location.name ))
+                    {
+                        BookmarkedPage.LocationList.Add(location);
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Location is already in your list.", "OK");
+                    }
+                }
             }
         }
 

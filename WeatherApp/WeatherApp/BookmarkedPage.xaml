@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.BookmarkedPage"
+             NavigationPage.HasNavigationBar="False">
+    <StackLayout>
+        <StackLayout>
+            <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="53" HasShadow="True" Padding="20,7">
+                <Grid>
+                    <Label Text="Choose Location" Style="{StaticResource DefaultGray16Bold}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="21"/>
+                    <ImageButton x:Name="CloseBookmarked" Source="close.png" Clicked="CloseBookmarked_Clicked" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="End" HeightRequest="20" Margin="0,0,20,0"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+        <ListView x:Name="LocationListView" ItemsSource="{Binding LocationList}" HasUnevenRows="True" Margin="30,10" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell x:Name="viewCell" Tapped="viewCell_Tapped">
+                        <StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="10"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding name}" Style="{StaticResource DefaultGray}" Grid.Row="1" VerticalOptions="Center" Padding="0,0,50,0"/>
+                                <ImageButton x:Name="DeleteLocation" Source="bin.png" Clicked="DeleteLocation_Clicked" Opacity="0.7" CommandParameter="{Binding .}" Grid.Row="1" Padding="5,5" Scale="1" HeightRequest="35" HorizontalOptions="End" VerticalOptions="Center" BackgroundColor="#0000"/>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="AddLocation" Clicked="AddLocation_Clicked" TextColor="#413C3C" Text=" + Add Location"  HorizontalOptions="End" VerticalOptions="Start" FontSize="20" Margin="20,0,30,20" FontFamily="Gadugi" CornerRadius="15" BackgroundColor="#E5E5E5"/>
+    </StackLayout>
+</ContentPage>

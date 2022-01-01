@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Forms;
 
@@ -152,5 +153,15 @@ namespace WeatherApp
         public float morn { get; set; }
     }
 
+    public class Location
+    {
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+        public string name { get; set; }
+    }
+    public class Locations
+    {
+        public ObservableCollection<Location> locations { get; set; }
+    }
 
 }
