@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.SettingsPage"             
+             NavigationPage.HasNavigationBar="False">
+    <StackLayout>
+        <StackLayout>
+            <Frame BackgroundColor="#E5E5E5" CornerRadius="5" HeightRequest="43" HasShadow="True" Padding="20,7">
+                <Grid>
+                    <Label Text="Settings" Style="{StaticResource DefaultGray16Bold}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontSize="21"/>
+                    <ImageButton x:Name="CloseSettings" Source="close.png" Clicked="CloseSettings_Clicked"  BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="End" HeightRequest="20" Margin="0,0,20,0"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Units" Style="{StaticResource DefaultGray16Bold}" Grid.Column="1" Grid.Row="0" FontSize="21" HorizontalOptions="StartAndExpand" VerticalOptions="End"/>
+            <RadioButton x:Name="MetricChoice" Grid.Column="1" Grid.Row="2" Content="Metric" VerticalOptions="End" CheckedChanged="Choice_CheckedChanged"/>
+            <Label Text="For temperature in Celsius and wind speed in meter/sec" Style="{StaticResource DefaultGray15}" Grid.Column="1" Grid.Row="3" VerticalOptions="Start"/>
+            <RadioButton x:Name="ImperialChoice" Grid.Column="1" Grid.Row="4" Content="Imperial" VerticalOptions="End" CheckedChanged="Choice_CheckedChanged"/>
+            <Label Text="For temperature in Fahrenheit and wind speed in miles/hour" Style="{StaticResource DefaultGray15}" Grid.Column="1" Grid.Row="5" VerticalOptions="Start"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>

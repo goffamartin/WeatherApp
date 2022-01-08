@@ -22,6 +22,19 @@ namespace WeatherApp
             longitude = (string)App.Current.Properties["Longitude"];
             latitude = (string)App.Current.Properties["Latitude"];
             placeName1 = (string)App.Current.Properties["Name"];
+            if ((string)App.Current.Properties["UnitsChoice"] == "metric")
+            {
+                UnitsChoice = Units.metric;
+                unitsTemp = "°C";
+                unitsSpeed = "m/s";
+            }
+            else if ((string)App.Current.Properties["UnitsChoice"] == "imperial")
+            {
+                UnitsChoice = Units.imperial;
+                unitsTemp = "°F";
+                unitsSpeed = "mph";
+            }
+
             if ((string)App.Current.Properties["Bookmarked"] != "")
             {
                 BookmarkedPage.LocationList = new ObservableCollection<Location>(JsonConvert.DeserializeObject<List<Location>>((string)App.Current.Properties["Bookmarked"]));
@@ -53,7 +66,7 @@ namespace WeatherApp
                 refreshView.IsRefreshing = false;
             }); 
         }
-        enum Units { standard, metric, imperial };
+        public enum Units { standard, metric, imperial };
         enum Lang { af, al, ar, az, bg, ca, cz, da, de, el, en, eu, fa, fi, fr, gl, he, hi, hr, hu, id, it, ja, kr, la, lt, mk, no, nl, pl, pt, pt_br, ro, ru, sv, sk, sl, sp, es, sr, th, tr, uk, vi, zh_cn, zu };
 
         public static string infostring;
@@ -62,8 +75,10 @@ namespace WeatherApp
         public static string latitude;
         public static string longitude;
         public static string placeName1;
+        public static string unitsTemp;
+        public static string unitsSpeed;
 
-        private Units UnitsChoice = Units.metric;
+        public static Units UnitsChoice = Units.metric;
         private Lang LangChoice = Lang.en;
 
         private static ObservableCollection<Hourly> HourlyForecastList { get; set; }
@@ -71,6 +86,9 @@ namespace WeatherApp
 
         public async void GetCurrentWeather()
         {
+            if(!refreshView.IsRefreshing)
+                UpdateIndicator.IsVisible = true;
+
             string url = $"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=minutely&units={UnitsChoice}&appid={Constants.WeatherApiKey}&lang={LangChoice}";
             var current = Connectivity.NetworkAccess;
 
@@ -109,17 +127,17 @@ namespace WeatherApp
             //Current Weather
             LocationName.Text = placeName1;
             Description.Text = (info.current.weather[0].description[0].ToString().ToUpper() + info.current.weather[0].description.Substring(1));
-            ActualTemp.Text = $"{info.current.temp.ToString("0")}°C";
+            ActualTemp.Text = $"{info.current.temp.ToString("0")}{unitsTemp}";
             WeatherIcon.Source = info.current.weather[0].icon;
-            Wind.Text = $"{info.current.wind_speed} m/s";
+            Wind.Text = $"{info.current.wind_speed} {unitsSpeed}";
             Humidity.Text = $"{info.current.humidity}%";
             Pressure.Text = $"{info.current.pressure} hpa";
             Visibility.Text = $"{info.current.visibility / 1000} km";
             UVindex.Text = $"{info.current.uvi}%";
-            DewPoint.Text = $"{info.current.dew_point}°C";
-            FeelTemp.Text = $"Feels like {info.current.feels_like.ToString("0")}°C";
-            MaxTemp.Text = $"{info.daily[0].temp.max.ToString("0")}°C";
-            MinTemp.Text = $"{info.daily[0].temp.min.ToString("0")}°C";
+            DewPoint.Text = $"{info.current.dew_point}{unitsTemp}";
+            FeelTemp.Text = $"Feels like {info.current.feels_like.ToString("0")}{unitsTemp}";
+            MaxTemp.Text = $"{info.daily[0].temp.max.ToString("0")}{unitsTemp}";
+            MinTemp.Text = $"{info.daily[0].temp.min.ToString("0")}{unitsTemp}";
             //Hourly Forecast
             HourlyForecastList = new ObservableCollection<Hourly>(info.hourly);
             HourlyForecastView.ItemsSource = HourlyForecastList;
@@ -127,12 +145,15 @@ namespace WeatherApp
             DailyForecastList = new ObservableCollection<Daily>(info.daily);
             DailyForecastView.ItemsSource = DailyForecastList;
 
-            refreshView.IsRefreshing = false;
+            //refreshView.IsRefreshing = false;
+            UpdateIndicator.IsVisible = false;
         }
 
         public async void GetCurrentLocation()
         {
-            refreshView.IsRefreshing = true;
+            if (!refreshView.IsRefreshing)
+                UpdateIndicator.IsVisible = true;
+
             currentLocation = true;
             try
             {
@@ -200,6 +221,7 @@ namespace WeatherApp
             App.Current.Properties["Latitude"] = latitude;
             App.Current.Properties["Longitude"] = longitude;
             App.Current.Properties["Bookmarked"] = JsonConvert.SerializeObject(BookmarkedPage.LocationList);
+            App.Current.Properties["UnitsChoice"] = UnitsChoice.ToString();
         }
 
 
@@ -235,6 +257,11 @@ namespace WeatherApp
         private void BookmarkedButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new BookmarkedPage(this));
+        }
+
+        private void SettingsButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SettingsPage(this));
         }
     }
 }

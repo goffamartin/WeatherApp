@@ -10,14 +10,13 @@
                     <Grid>
                         <ImageButton x:Name="SearchButton" Source="search.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="Start" HeightRequest="20" Margin="20,9,0,9" Clicked="SearchButton_Clicked"/>
                         <ImageButton x:Name="BookmarkedButton" Source="bookmarked.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="Center" HeightRequest="20" Margin="0,9,0,9" Clicked="BookmarkedButton_Clicked"/>
-                        <ImageButton x:Name="SettingsButton" Source="settings.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="End" HeightRequest="20" Margin="0,9,20,9"/>
+                        <ImageButton x:Name="SettingsButton" Source="settings.png" BackgroundColor="#E5E5E5" Opacity="0.7" Grid.Column="0" Scale="2" HorizontalOptions="End" HeightRequest="20" Margin="0,9,20,9" Clicked="SettingsButton_Clicked"/>
                     </Grid>
                 </Frame>
                 <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}">
 
                 <ScrollView>
-
                     <Frame BackgroundColor="Transparent">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -28,6 +27,7 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <StackLayout>
+                                <ActivityIndicator x:Name="UpdateIndicator" IsRunning="True" IsVisible="false" Color="#1F2020"/>
                                 <Label x:Name="InternetConnection" Style="{StaticResource DefaultGray}" Text="No internet Connection" IsVisible="false" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                 <Grid Grid.Row="0">
                                     <Grid.RowDefinitions>
@@ -41,16 +41,17 @@
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="195"/>
+                                        <ColumnDefinition Width="11"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label x:Name="LocationName" Style="{StaticResource DefaultGray16Bold}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="50"/>
+                                    <Label x:Name="LocationName" Style="{StaticResource DefaultGray16Bold}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="50"/>
                                     
-                                    <Label x:Name="Description" Style="{StaticResource DefaultGray}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="40" MaxLines="2" HorizontalTextAlignment="Start"/>
+                                    <Label x:Name="Description" Style="{StaticResource DefaultGray}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" FontSize="40" MaxLines="2" HorizontalTextAlignment="Start"/>
+
+                                    <Label x:Name="ActualTemp" Style="{StaticResource DefaultGray}" Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2" FontSize="85"/>
+                                    <Label x:Name="FeelTemp" Style="{StaticResource DefaultGray}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30"/>
                                     
-                                    <Label x:Name="ActualTemp" Style="{StaticResource DefaultGray}" Grid.Row="3" Grid.Column="0" FontSize="85"/>
-                                    <Label x:Name="FeelTemp" Style="{StaticResource DefaultGray}" Grid.Row="4" Grid.Column="0" FontSize="30"/>
-                                    
-                                    <Image x:Name="WeatherIcon" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Scale="1.4" Opacity="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Image x:Name="WeatherIcon" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Scale="1.4" Opacity="0.8" HorizontalOptions="Center" VerticalOptions="Center"/>
                                     
                                     <Image Source="arrow_icon.png" Opacity="0.6" Grid.Row="5" HorizontalOptions="Start" HeightRequest="25"/>
                                     <Label x:Name="MaxTemp" Style="{StaticResource DefaultGray}" Grid.Row="5" Grid.Column="0" Padding="30,0,0,0"/>

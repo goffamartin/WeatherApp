@@ -112,7 +112,7 @@ namespace WeatherApp
         }
         public string temperature 
         {
-            get { return $"{temp.day.ToString("0")}/{temp.night.ToString("0")}°C"; }
+            get { return $"{temp.day.ToString("0")}/{temp.night.ToString("0")}{MainPage.unitsTemp}"; }
         }
         public string date { get; set; }
         public int sunrise { get; set; }
@@ -159,9 +159,4 @@ namespace WeatherApp
         public string longitude { get; set; }
         public string name { get; set; }
     }
-    public class Locations
-    {
-        public ObservableCollection<Location> locations { get; set; }
-    }
-
 }
