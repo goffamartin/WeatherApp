@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+Ôªøusing Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using WeatherApp;
 using Newtonsoft.Json;
@@ -10,7 +10,7 @@ namespace UnitTest
     public class UnitTest1
     {
         [TestMethod]
-        public async Task APICallTest() //Test vol·nÌ API
+        public async Task APICallTest() //Test vol√°n√≠ API
         {
             // Arrange
             string latitude = "50";
@@ -24,7 +24,7 @@ namespace UnitTest
             Assert.IsTrue(response.Successuful);
         }
         [TestMethod]
-        public async Task DeserializeIntoObject1() //Test, zda je objekt spr·vnÏ strukturov·n pro deserializaci (Weather)
+        public async Task DeserializeIntoObject1() //Test, zda je objekt spr√°vnƒõ strukturov√°n pro deserializaci (Weather)
         {
             // Arrange
             string ApiKey = "f4cdb9a4d3badec1ff1423c4a5fba527";
@@ -36,7 +36,7 @@ namespace UnitTest
             Assert.IsNotNull(info);
         }
         [TestMethod]
-        public async Task DeserializeIntoObject2() //Test, zda je objekt spr·vnÏ strukturov·n pro deserializaci (GooglePlaceAutoComplete)
+        public async Task DeserializeIntoObject2() //Test, zda je objekt spr√°vnƒõ strukturov√°n pro deserializaci (GooglePlaceAutoComplete)
         {
             // Arrange
             string searchtext = "Praha";
@@ -49,7 +49,7 @@ namespace UnitTest
             Assert.IsNotNull(info);
         }
         [TestMethod]
-        public async Task DeserializeIntoObject3() //Test, zda je objekt spr·vnÏ strukturov·n pro deserializaci (GooglePlace)
+        public async Task DeserializeIntoObject3() //Test, zda je objekt spr√°vnƒõ strukturov√°n pro deserializaci (GooglePlace)
         {
             // Arrange
             string placeId = "ChIJi3lwCZyTC0cRkEAWZg-vAAQ"; //Praha
