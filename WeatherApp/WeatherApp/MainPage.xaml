@@ -130,31 +130,75 @@
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid HeightRequest="60">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="100"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="100"/>
-                                                        <ColumnDefinition Width="50"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="50"/>
-                                                        <RowDefinition Height="10"/>
-                                                    </Grid.RowDefinitions>
-                                                    <xct:Expander x:Name="DailyExpander" Tapped="DailyExpander_Tapped">
-                                                        <xct:Expander.Header>
-                                                            <StackLayout>
-                                                                <Label Style="{StaticResource DefaultGray15}" Text="{Binding date}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                                                <Label Style="{StaticResource DefaultGray15}" Text="{Binding temperature}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"/>
-                                                                <Image Source="{Binding Path=weather[0].icon}" Grid.Column="3" Opacity="0.8" Scale="1.2" VerticalOptions="Center" HorizontalOptions="Center"/>
-                                                                <Line Stroke="#413C3C" X1="0" Y1="0" X2="800" Y2="0" Grid.Row="1" Grid.ColumnSpan="4"/>
-                                                            </StackLayout>
-                                                        </xct:Expander.Header>
-                                                        <Grid>
 
+                                                <xct:Expander x:Name="DailyExpander">
+                                                    <xct:Expander.Header>
+                                                        <Grid HeightRequest="60">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="50"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="50"/>
+                                                                <RowDefinition Height="10"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Label Style="{StaticResource DefaultGray15}" Text="{Binding date}" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                            <Label Style="{StaticResource DefaultGray15}" Text="{Binding temperature}" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"/>
+                                                            <Image Source="{Binding Path=weather[0].icon}" Grid.Column="3" Opacity="0.8" Scale="1.2" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                            <Line Stroke="#413C3C" X1="0" Y1="0" X2="800" Y2="0" Grid.Row="1" Grid.ColumnSpan="4"/>
                                                         </Grid>
-                                                    </xct:Expander>
-                                                </Grid>
+                                                    </xct:Expander.Header>
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="20"/>
+                                                            <RowDefinition Height="20"/>
+                                                            <RowDefinition Height="32"/>
+                                                            <RowDefinition Height="20"/>
+                                                            <RowDefinition Height="32"/>
+                                                            <RowDefinition Height="20"/>
+                                                            <RowDefinition Height="32"/>
+                                                            <RowDefinition Height="45"/>
+                                                            <RowDefinition Height="10"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="20"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Style="{StaticResource DefaultGray15}" Text="Wind:" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+                                                        <Label Style="{StaticResource DefaultGray16Bold}" Text="{Binding Wind}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+
+                                                        <Label Style="{StaticResource DefaultGray15}" Text="Pressure:" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+                                                        <Label Style="{StaticResource DefaultGray16Bold}" Text="{Binding Pressure}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+
+                                                        <Label  Style="{StaticResource DefaultGray15}" Text="Humidity:" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+                                                        <Label  Style="{StaticResource DefaultGray16Bold}" Text="{Binding Humidity}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+
+
+
+                                                        <Label  Style="{StaticResource DefaultGray15}" Text="Cloudness:" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+                                                        <Label  Style="{StaticResource DefaultGray16Bold}" Text="{Binding Clouds}" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+
+                                                        <Label Style="{StaticResource DefaultGray15}" Text="UV index:" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+                                                        <Label Style="{StaticResource DefaultGray16Bold}" Text="{Binding UVindex}" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+
+                                                        <Label  Style="{StaticResource DefaultGray15}" Text="Dew point:" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+                                                        <Label  Style="{StaticResource DefaultGray16Bold}" Text="{Binding Dew_point}" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Start"/>
+                                                        
+                                                        <Image Source="sunrise.png" Opacity="0.8" Grid.Row="7" Grid.Column="2" VerticalOptions="Center" HeightRequest="45" HorizontalOptions="Start"/>
+                                                        <Label Style="{StaticResource DefaultGray16Bold}" Text="{Binding Sunrise}" VerticalOptions="Center" Grid.Row="7" Grid.Column="1"/>
+                                                        <Image Source="sunset.png" Opacity="0.8" Grid.Row="7" Grid.Column="5" VerticalOptions="Center" HeightRequest="45" HorizontalOptions="Start"/>
+                                                        <Label Style="{StaticResource DefaultGray16Bold}" Text="{Binding Sunset}" VerticalOptions="Center" Grid.Row="7" Grid.Column="4"/>
+                                                        <Line Stroke="#413C3C" X1="0" Y1="0" X2="800" Y2="0" Grid.Row="8" Grid.ColumnSpan="7"/>
+                                                    </Grid>
+                                                </xct:Expander>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>

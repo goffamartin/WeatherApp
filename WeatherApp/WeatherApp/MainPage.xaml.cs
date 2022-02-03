@@ -263,10 +263,5 @@ namespace WeatherApp
         {
             Navigation.PushAsync(new SettingsPage(this));
         }
-
-        private void DailyExpander_Tapped(object sender, EventArgs e)
-        {
-
-        }
     }
 }

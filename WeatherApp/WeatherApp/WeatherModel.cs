@@ -98,7 +98,8 @@ namespace WeatherApp
 
     public class Daily
     {
-        private int _dt;
+
+private int _dt;
         public int dt
         {
             get { return _dt; }
@@ -116,23 +117,45 @@ namespace WeatherApp
         }
         public string date { get; set; }
         public int sunrise { get; set; }
+        //string sunrise
+        public string Sunrise { get { return ConvertTime(sunrise); } }
         public int sunset { get; set; }
+        //string susnet
+        public string Sunset { get { return ConvertTime(sunset); } }
         public int moonrise { get; set; }
         public int moonset { get; set; }
         public float moon_phase { get; set; }
         public Temp temp { get; set; }
         public Feels_Like feels_like { get; set; }
+        public string Pressure { get { return $"{pressure} hpa"; } }
         public int pressure { get; set; }
+        //string humidity
+        public string Humidity { get { return $"{humidity}%"; } }
         public int humidity { get; set; }
+        //string Dew point
+        public string Dew_point { get { return $"{dew_point}{MainPage.unitsTemp}"; } }
         public float dew_point { get; set; }
+        //string wind
+        public string Wind { get { return $"{wind_speed}{MainPage.unitsSpeed}"; } }
         public float wind_speed { get; set; }
         public int wind_deg { get; set; }
         public float wind_gust { get; set; }
         public Weather[] weather { get; set; }
+        //string Clouds
+        public string Clouds { get { return $"{clouds}%"; } }
         public int clouds { get; set; }
         public float pop { get; set; }
+        //string UV index
+        public string UVindex { get { return $"{uvi}%"; } }
         public float uvi { get; set; }
         public float snow { get; set; }
+        public static string ConvertTime(int time)
+        {
+            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dateTime = dateTime.AddSeconds(time).ToLocalTime();
+            return $"{dateTime.ToString("HH:mm")}";
+            //_dt = value;
+        }
     }
 
     public class Temp
