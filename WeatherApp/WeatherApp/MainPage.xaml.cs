@@ -145,7 +145,6 @@ namespace WeatherApp
             DailyForecastList = new ObservableCollection<Daily>(info.daily);
             DailyForecastView.ItemsSource = DailyForecastList;
 
-            //refreshView.IsRefreshing = false;
             UpdateIndicator.IsVisible = false;
         }
 
