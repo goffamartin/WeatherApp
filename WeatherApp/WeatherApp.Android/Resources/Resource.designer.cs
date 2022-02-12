@@ -22984,7 +22984,7 @@ namespace WeatherApp.Droid
 			public const int image = 2131230943;
 			
 			// aapt resource value: 0x7F0800E0
-			public const int imageView1 = 2131230944;
+			public const int imageWeather = 2131230944;
 			
 			// aapt resource value: 0x7F0800E1
 			public const int immediateStop = 2131230945;
@@ -23814,29 +23814,32 @@ namespace WeatherApp.Droid
 			// aapt resource value: 0x7F0801EB
 			public const int west = 2131231211;
 			
-			// aapt resource value: 0x7F0801ED
-			public const int withinBounds = 2131231213;
-			
 			// aapt resource value: 0x7F0801EC
-			public const int withText = 2131231212;
+			public const int widgetBackground = 2131231212;
 			
 			// aapt resource value: 0x7F0801EE
-			public const int wrap = 2131231214;
+			public const int withinBounds = 2131231214;
+			
+			// aapt resource value: 0x7F0801ED
+			public const int withText = 2131231213;
 			
 			// aapt resource value: 0x7F0801EF
-			public const int wrap_content = 2131231215;
+			public const int wrap = 2131231215;
 			
 			// aapt resource value: 0x7F0801F0
-			public const int wrap_content_constrained = 2131231216;
+			public const int wrap_content = 2131231216;
 			
 			// aapt resource value: 0x7F0801F1
-			public const int x_left = 2131231217;
+			public const int wrap_content_constrained = 2131231217;
 			
 			// aapt resource value: 0x7F0801F2
-			public const int x_right = 2131231218;
+			public const int x_left = 2131231218;
 			
 			// aapt resource value: 0x7F0801F3
-			public const int zero_corner_chip = 2131231219;
+			public const int x_right = 2131231219;
+			
+			// aapt resource value: 0x7F0801F4
+			public const int zero_corner_chip = 2131231220;
 			
 			static Id()
 			{
